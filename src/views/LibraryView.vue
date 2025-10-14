@@ -59,7 +59,7 @@ const recentSongs = ref([
   { id: 8, title: 'Levitating', artist: 'Dua Lipa', cover: '/covers/levitating.jpg', src: '/music/Gods.mp3' },
 ]);
 
-const playSong = (song: { id: number; title: string; artist: string; cover: string }) => {
+const playSong = (song: { id: number; title: string; artist: string; cover: string; src: string }) => {
   playerStore.playSong(song);
 };
 </script>
