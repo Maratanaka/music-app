@@ -46,14 +46,14 @@ import { usePlayerStore } from '@/store/playerStore';
 const playerStore = usePlayerStore();
 
 const albums = ref([
-  { id: 1, title: 'Man Best Friend', artist: 'Sabrina Carpenter', cover: '/covers/Sabrina.png', src: '/music/Gods.mp3' },
-  { id: 2, title: 'The Art Of Loving', artist: 'Olivia Dean', cover: '/covers/Olivia.png', src: '/music/Gods.mp3' },
-  { id: 3, title: 'Perrie', artist: 'Perrie', cover: '/covers/Perrie.jpg', src: '/music/Gods.mp3' },
-  { id: 4, title: 'Saving Grace', artist: 'Robert Plant', cover: '/covers/Robert.png', src: '/music/Gods.mp3' },
+  { id: 1, title: 'Manchild', artist: 'Sabrina Carpenter', cover: '/covers/Sabrina.png', src: 'public/music/Sabrina Carpenter - Manchild (Lyrics).mp3' },
+  { id: 2, title: 'díva', artist: 'Dszúdló,DESH', cover: '/covers/diva.jpg', src: 'public/music/Dzsúdló, DESH - Díva (Dalszöveg videó).mp3' },
+  { id: 3, title: 'Golden', artist: 'HUNTR/X,EJAE,AUDEY NUNA,REI AMI', cover: '/covers/golden.jpg', src: '/music/“Golden” Official Lyric Video _ KPop Demon Hunters _ Sony Animation [yebNIHKAC4A].mp3' },
+  { id: 4, title: 'Back In Black', artist: 'AC/DC', cover: '/covers/back_in_black.jpg', src: '/music/ACDC - Back In Black (Lyrics).mp3' },
 ]);
 
 const recentSongs = ref([
-  { id: 5, title: 'Lose Yourself', artist: 'Eminem', cover: '/covers/eminem.jpg', src: '/music/Gods.mp3' },
+  { id: 5, title: 'Lose Yourself', artist: 'Eminem', cover: '/covers/eminem.jpg', src: '/music/Eminem - Lose Yourself (Lyrics).mp3' },
   { id: 6, title: 'Shape of You', artist: 'Ed Sheeran', cover: '/covers/shape_of_you.jpg', src: '/music/Gods.mp3' },
   { id: 7, title: 'Blinding Lights', artist: 'The Weeknd', cover: '/covers/Weeknd.jpg', src: '/music/Gods.mp3' },
   { id: 8, title: 'Levitating', artist: 'Dua Lipa', cover: '/covers/levitating.jpg', src: '/music/Gods.mp3' },

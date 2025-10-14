@@ -31,8 +31,8 @@ defineProps<{
 }
 
 .cover {
-  width: 60px;
-  height: 60px;
+  width: 61px;
+  height: 61px;
   border-radius: 6px;
   object-fit: cover;
 }
