@@ -4,7 +4,7 @@ import TabsPage from '@/views/TabsPage.vue';
 const routes = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/library', // ⬅️ Ezt módosítottuk: most a Library lesz az alapértelmezett oldal
   },
   {
     path: '/',

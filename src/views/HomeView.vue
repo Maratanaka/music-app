@@ -1,37 +1,34 @@
 <template>
   <IonPage>
     <div class="home-container">
-      <!-- Header: h1 + profil kép -->
-      <div class="header">
-        <h1>Music Hub</h1>
-        <img src="/covers/deadpool.jpg" alt="Profile" class="profile-pic" />
-      </div>
-
-      <!-- Albumok grid -->
-      <div class="album-grid">
-        <SongCard
-          v-for="album in albums"
-          :key="album.id"
-          :id="album.id"
-          :title="album.title"
-          :artist="album.artist"
-          :cover="album.cover"
-          @click="playSong(album)"
+      <div v-if="player.currentSong" class="player-full">
+        <p class="artist-name">{{ player.currentSong.artist }}</p>
+        <img
+          :src="player.currentSong.cover"
+          alt="cover"
+          class="song-cover"
         />
-      </div>
 
-      <!-- Utólag hallgatott dalok -->
-      <div class="recently-played">
-        <h2>Recently Played</h2>
-        <SongCard
-          v-for="song in recentSongs"
-          :key="song.id"
-          :id="song.id"
-          :title="song.title"
-          :artist="song.artist"
-          :cover="song.cover"
-          @click="playSong(song)"
-        />
+        <div class="song-info">
+          <h3>{{ player.currentSong.title }}</h3>
+          <p>{{ player.currentSong.artist }}</p>
+        </div>
+
+        <div class="controls">
+          <button class="circle-btn small">
+            <span class="material-symbols-outlined">skip_previous</span>
+          </button>
+
+          <button class="circle-btn large" @click="player.togglePlay">
+            <span class="material-symbols-outlined">
+              {{ player.isPlaying ? 'pause' : 'play_arrow' }}
+            </span>
+          </button>
+
+          <button class="circle-btn small">
+            <span class="material-symbols-outlined">skip_next</span>
+          </button>
+        </div>
       </div>
     </div>
   </IonPage>
@@ -39,82 +36,98 @@
 
 <script setup lang="ts">
 import { IonPage } from '@ionic/vue';
-import SongCard from '@/components/SongCard.vue';
-import { ref } from 'vue';
 import { usePlayerStore } from '@/store/playerStore';
-
-const playerStore = usePlayerStore();
-
-const albums = ref([
-  { id: 1, title: 'Man Best Friend', artist: 'Sabrina Carpenter', cover: '/covers/Sabrina.png' },
-  { id: 2, title: 'The Art Of Loving', artist: 'Olivia Dean', cover: '/covers/Olivia.png' },
-  { id: 3, title: 'Perrie', artist: 'Perrie', cover: '/covers/Perrie.jpg' },
-  { id: 4, title: 'Saving Grace', artist: 'Robert Plant', cover: '/covers/Robert.png' },
-]);
-
-const recentSongs = ref([
-  { id: 5, title: 'Lose Yourself', artist: 'Eminem', cover: '/covers/eminem.jpg' },
-  { id: 6, title: 'Shape of You', artist: 'Ed Sheeran', cover: '/covers/shape_of_you.jpg' },
-  { id: 7, title: 'Blinding Lights', artist: 'The Weeknd', cover: '/covers/Weeknd.jpg' },
-  { id: 8, title: 'Levitating', artist: 'Dua Lipa', cover: '/covers/levitating.jpg' },
-]);
-
-const playSong = (song: { id: number; title: string; artist: string; cover: string }) => {
-  playerStore.playSong(song);
-};
+const player = usePlayerStore();
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
+
 .home-container {
-  padding: 12px;
-  padding-bottom: 100px; /* PlayerBar helye */
   background: #121212;
   color: white;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  overflow-y: auto; /* Scroll engedélyezése */
-  height: 100%; /* teljes IonPage magasság */
+  overflow-y: auto;
+  height: 100%;
   box-sizing: border-box;
 }
 
-/* Header: h1 + profil kép */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 10px 10px 16px 10px;
+.artist-name {
+  font-size: 18px;
+  color: #aaa;
+  margin-bottom: 0px;
 }
 
-.header h1 {
-  font-size: 28px;
+.player-full {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 24px;
+}
+
+.song-cover {
+  width: 80%;
+  max-width: 320px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+}
+
+.song-info {
+  margin-top: 30px;
+}
+
+.song-info h3 {
+  font-size: 26px;
   margin: 0;
 }
 
-.profile-pic {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid white;
+.song-info p {
+  margin-top: 8px;
+  color: #aaa;
+  font-size: 18px;
 }
 
-/* Album grid */
-.album-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin-bottom: 12px;
-}
-
-/* Legutóbb hallgatott dalok */
-.recently-played h2 {
-  font-size: 20px;
-  margin: 12px 10px;
-}
-
-.recently-played {
+/* Kontroller gombok */
+.controls {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.circle-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 50%;
+  background: #282828;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+ 
+}
+
+
+
+.circle-btn.small {
+  width: 55px;
+  height: 55px;
+  font-size: 28px;
+}
+
+.circle-btn.large {
+  width: 80px;
+  height: 80px;
+  font-size: 34px;
+}
+
+.material-symbols-outlined {
+  font-size: inherit;
 }
 </style>
