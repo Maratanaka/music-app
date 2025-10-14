@@ -46,7 +46,7 @@ import { usePlayerStore } from '@/store/playerStore';
 const playerStore = usePlayerStore();
 
 const albums = ref([
-  { id: 1, title: 'Man Best Friend', artist: 'Sabrina Carpenter', cover: '/covers/Sabrina.png' },
+  { id: 1, title: 'Man Best Friend', artist: 'Sabrina Carpenter', cover: '/covers/Sabrina.png', src: '/music/Gods.mp3' },
   { id: 2, title: 'The Art Of Loving', artist: 'Olivia Dean', cover: '/covers/Olivia.png' },
   { id: 3, title: 'Perrie', artist: 'Perrie', cover: '/covers/Perrie.jpg' },
   { id: 4, title: 'Saving Grace', artist: 'Robert Plant', cover: '/covers/Robert.png' },
