@@ -83,7 +83,7 @@ const playSong = (song: { id: number; title: string; artist: string; cover: stri
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 40px 10px 16px 10px;
+  margin: 60px 10px 16px 10px;
 }
 
 .header h1 {
