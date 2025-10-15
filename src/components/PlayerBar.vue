@@ -99,6 +99,6 @@ const onSeek = (event: Event) => {
 
 .progress-container input[type="range"] {
   width: 100%;
-  accent-color: #f0e59b;
+  accent-color: #22f2dd;
 }
 </style>
