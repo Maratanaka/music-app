@@ -90,7 +90,7 @@ const playSong = (song: { id: number; title: string; artist: string; cover: stri
 }
 
 .header {
-  margin-bottom: 12px;
+  margin: 60px 10px 16px 10px;
 }
 
 .header h1 {
