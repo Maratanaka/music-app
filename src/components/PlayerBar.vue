@@ -18,6 +18,18 @@
           <div class="artist" v-if="playerStore.currentSong">{{ playerStore.currentSong.artist }}</div>
         </div>
       </div>
+
+      <!-- Új progress bar -->
+      <div class="progress-container" v-if="playerStore.currentSong">
+        <input
+          type="range"
+          min="0"
+          :max="playerStore.duration"
+          step="0.1"
+          :value="playerStore.currentTime"
+          @input="onSeek"
+        />
+      </div>
     </ion-toolbar>
   </ion-footer>
 </template>
@@ -28,6 +40,11 @@ import { play, pause } from 'ionicons/icons';
 import { usePlayerStore } from '@/store/playerStore';
 
 const playerStore = usePlayerStore();
+
+const onSeek = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  playerStore.seekTo(Number(target.value));
+};
 </script>
 
 <style scoped>
@@ -39,7 +56,8 @@ const playerStore = usePlayerStore();
   border-top-right-radius: 12px;
   padding: 0 12px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .player-left {
@@ -72,5 +90,15 @@ const playerStore = usePlayerStore();
 
 .pla-btn {
   --color: white;
+}
+
+.progress-container {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.progress-container input[type="range"] {
+  width: 100%;
+  accent-color: #f0e59b;
 }
 </style>

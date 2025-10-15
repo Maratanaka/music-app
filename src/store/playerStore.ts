@@ -1,39 +1,56 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
 
-export const usePlayerStore = defineStore('player', () => {
-  const currentSong = ref<{ id: number; title: string; artist: string; cover: string; src: string } | null>(null);
-  const isPlaying = ref(false);
-  const audio = new Audio();
+export const usePlayerStore = defineStore('player', {
+  state: () => ({
+    audio: new Audio(),
+    currentSong: null as null | {
+      id: number;
+      title: string;
+      artist: string;
+      cover: string;
+      src: string;
+    },
+    isPlaying: false,
+    currentTime: 0,
+    duration: 0,
+  }),
 
-  async function playSong(song: { id: number; title: string; artist: string; cover: string; src: string }) {
-    try {
-      currentSong.value = song;
-      audio.pause();
-      audio.src = song.src;
-      await audio.load();
-      await audio.play();
-      isPlaying.value = true;
-    } catch (err) {
-      console.error('Play error:', err);
-      isPlaying.value = false;
-    }
-  }
+  actions: {
+    playSong(song: { id: number; title: string; artist: string; cover: string; src: string }) {
+      if (this.currentSong?.id !== song.id) {
+        this.audio.src = song.src;
+        this.audio.load();
+        this.currentSong = song;
+      }
+      this.audio.play();
+      this.isPlaying = true;
 
-  function togglePlay() {
-    if (!currentSong.value) return;
-    if (isPlaying.value) {
-      audio.pause();
-      isPlaying.value = false;
-    } else {
-      audio.play().catch((err) => console.warn('Play error:', err));
-      isPlaying.value = true;
-    }
-  }
+      // Frissítés minden másodpercben
+      this.audio.ontimeupdate = () => {
+        this.currentTime = this.audio.currentTime;
+        this.duration = this.audio.duration || 0;
+      };
 
-  audio.onended = () => {
-    isPlaying.value = false;
-  };
+      this.audio.onended = () => {
+        this.isPlaying = false;
+      };
+    },
 
-  return { currentSong, isPlaying, playSong, togglePlay };
+    togglePlay() {
+      if (!this.currentSong) return;
+      if (this.isPlaying) {
+        this.audio.pause();
+        this.isPlaying = false;
+      } else {
+        this.audio.play();
+        this.isPlaying = true;
+      }
+    },
+
+    seekTo(seconds: number) {
+      if (this.audio.duration) {
+        this.audio.currentTime = seconds;
+      }
+    },
+  },
 });
