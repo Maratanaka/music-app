@@ -57,7 +57,7 @@ const player = usePlayerStore();
 .artist-name {
   font-size: 18px;
   color: #aaa;
-  margin-bottom: 0px;
+  margin: 60px 10px 16px 10px;
 }
 
 .player-full {
