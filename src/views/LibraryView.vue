@@ -46,8 +46,8 @@ import { usePlayerStore } from '@/store/playerStore';
 const playerStore = usePlayerStore();
 
 const albums = ref([
-  { id: 1, title: 'Manchild', artist: 'Sabrina Carpenter', cover: '/covers/Sabrina.png', src: 'public/music/Sabrina Carpenter - Manchild (Lyrics).mp3' },
-  { id: 2, title: 'díva', artist: 'Dszúdló,DESH', cover: '/covers/diva.jpg', src: 'public/music/Dzsúdló, DESH - Díva (Dalszöveg videó).mp3' },
+  { id: 1, title: 'Manchild', artist: 'Sabrina Carpenter', cover: '/covers/Sabrina.png', src: '/music/Sabrina Carpenter - Manchild (Lyrics).mp3' },
+  { id: 2, title: 'díva', artist: 'Dszúdló,DESH', cover: '/covers/diva.jpg', src: '/music/Dzsúdló, DESH - Díva (Dalszöveg videó).mp3' },
   { id: 3, title: 'Golden', artist: 'HUNTR/X,EJAE,AUDEY NUNA,REI AMI', cover: '/covers/golden.jpg', src: '/music/“Golden” Official Lyric Video _ KPop Demon Hunters _ Sony Animation [yebNIHKAC4A].mp3' },
   { id: 4, title: 'Back In Black', artist: 'AC/DC', cover: '/covers/back_in_black.jpg', src: '/music/ACDC - Back In Black (Lyrics).mp3' },
 ]);
