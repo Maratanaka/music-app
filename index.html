@@ -2,10 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Ionic App</title>
+    <title>Music Player</title>
 
     <base href="/" />
 
+    <!-- Mobilbarát beállítások -->
     <meta name="color-scheme" content="light dark" />
     <meta
       name="viewport"
@@ -16,16 +17,22 @@
 
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
 
-    <!-- add to homescreen for ios -->
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Ionic App" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Music Player" />
+
+<link rel="manifest" href="/manifest.json" />
+<link rel="apple-touch-icon" href="/icon.png" />
+
+
+    <!-- ✅ Színek a status bar / háttérhez -->
+    <meta name="theme-color" content="#121212" />
+    <meta name="background-color" content="#121212" />
   </head>
 
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
-
 </html>
-
